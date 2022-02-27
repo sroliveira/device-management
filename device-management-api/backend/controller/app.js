@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const categoryService = require("./service/categoryService");
+const categoryService = require("../service/categoryService");
+const deviceService = require("../service/deviceService");
 
 const app = express();
 
@@ -24,9 +25,6 @@ app.get('/api/categories', async (req, res, next) => {
 
     const categories = await categoryService.getAll(nameCategory);
 
-    console.log(nameCategory);
-    console.log(categories);
-
     res.status(getSuccessStatus).json({
         message: 'category.success.fetched',    
         categories: categories
@@ -35,7 +33,6 @@ app.get('/api/categories', async (req, res, next) => {
 
 app.post('/api/category', async (req, res, next) => {
     const post = req.body;
-    console.log(post);
     categoryService.save(post);
     res.status(postSuccessStatus).json({
         message: 'category.success.added'
@@ -47,6 +44,34 @@ app.delete('/api/category', async (req, res, next) => {
     categoryService.remove(categoryId);
     res.status(deleteSuccessStatus).json({
         message: 'category.success.removed'
+    });
+})
+
+app.get('/api/devices', async (req, res, next) => {
+    
+    var categoryId = req.query.categoryId;
+
+    const devices = await deviceService.getAll(categoryId);
+
+    res.status(getSuccessStatus).json({
+        message: 'device.success.fetched',    
+        devices: devices
+    });
+});
+
+app.post('/api/device', async (req, res, next) => {
+    const post = req.body;
+    deviceService.save(post);
+    res.status(postSuccessStatus).json({
+        message: 'device.success.added'
+    });
+})
+
+app.delete('/api/device', async (req, res, next) => {
+    var deviceId = req.query.deviceId;
+    deviceService.remove(deviceId);
+    res.status(deleteSuccessStatus).json({
+        message: 'device.success.removed'
     });
 })
 
