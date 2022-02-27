@@ -21,7 +21,6 @@ export class CategoryListComponent implements OnInit {
 
   public dataSource = new MatTableDataSource<Category>();
 
-  categoryReturn = '';
   nameSearch = '';
 
   constructor(public categoryService : CategoryService, public dialog : MatDialog) {
@@ -40,7 +39,6 @@ export class CategoryListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
     });
   }
-
 
   onSearchCategory() {
     if (this.nameSearch != null) {

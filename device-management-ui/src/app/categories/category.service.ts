@@ -34,6 +34,7 @@ export class CategoryService {
   }*/
 
   getCategories(nameCategory : string) {
+    console.log(nameCategory);
     let params = new HttpParams().set('nameCategory',nameCategory);
     this.httpClient.get<{message: string, categories: Category[]}>('http://localhost:3000/api/categories', { params : params }).toPromise().then(async (res : any) => {
       this.categories = await res.categories;
