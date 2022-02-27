@@ -4,9 +4,7 @@
   </button>
   <mat-menu #menu="matMenu">
     <button mat-menu-item [routerLink]="['']" routerLinkActive="active">Category Management</button>
-    <button mat-menu-item>
-      <span>Device Management</span>
-    </button>
-    <a routerLink="">Category</a>
+    <button mat-menu-item [routerLink]="['devices']" routerLinkActive="active">Device Management</button>
   </mat-menu>
-  Device Management</mat-toolbar>
+  <p>Device Management</p>
+  </mat-toolbar>
