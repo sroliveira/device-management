@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>Device Add</h1>
+<form (submit)="onSaveDevice(deviceForm)" #deviceForm="ngForm">
+  <div mat-dialog-content>
+    <mat-form-field>
+      <mat-select placeholder="Category" #categoryId="ngModel" name="categoryId" ngModel required="true">
+        <mat-option *ngFor="let category of categories" [value]="category.id">
+          {{category.name}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="categoryId.invalid">Please, select a category</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" id="input-device-color" ngModel name="colorDevice" size="50" required minlength="1" maxlength="16" #colorDevice="ngModel" placeholder="Color" (keypress)="keyPressOnlyText($event)">
+      <mat-error *ngIf="colorDevice.invalid">Please, enter an only text device color </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" id="input-device-partnumber" ngModel name="partnumberDevice" size="50" minlength="1" maxlength="10" required #partnumberDevice="ngModel" placeholder="Partnumber" (keypress)="keyPressOnlyNumber($event)">
+      <mat-error *ngIf="partnumberDevice.invalid">Please, enter a numeric partnumber </mat-error>
+    </mat-form-field>
+  </div>
+  <mat-dialog-actions>
+    <button mat-raised-button id="button-save-device" color="primary" name="save-device" type="submit" >Save Device</button>
+    <button mat-raised-button id="button-cancel-device" color="primary" name="cancel-device" (click)="onCancel()" type="button" >Cancel</button>
+  </mat-dialog-actions>
+</form>
+

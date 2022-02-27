@@ -1,0 +1,14 @@
+#input-device-color {
+  width: 100%;
+  text-transform: uppercase;
+}
+
+#button-save-device {
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+#button-cancel-device {
+  margin-left: 2px;
+  margin-right: 2px;
+}

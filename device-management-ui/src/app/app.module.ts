@@ -7,6 +7,9 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { CategoryCreateComponent } from './categories/category-create/category-create.component';
 import { CategoryListComponent } from './categories/category-list/category-list.component';
+import { DeviceListComponent } from './devices/device-list/device-list.component';
+import { DeviceCreateComponent } from './devices/device-create/device-create.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
@@ -18,14 +21,18 @@ import {MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { HttpClientModule } from '@angular/common/http';
-import {MatDialogModule} from '@angular/material/dialog'
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
     AppComponent,
     CategoryCreateComponent,
     HeaderComponent,
-    CategoryListComponent
+    CategoryListComponent,
+    CategoryListComponent,
+    DeviceCreateComponent,
+    DeviceListComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +49,8 @@ import {MatDialogModule} from '@angular/material/dialog'
     MatFormFieldModule,
     MatExpansionModule,
     HttpClientModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

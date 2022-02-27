@@ -1,0 +1,61 @@
+<h2>Device List</h2>
+<hr>
+<mat-accordion>
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Filter
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-card>
+       <mat-form-field appearance="fill">
+         <mat-select placeholder="Category" [(ngModel)]="categoryIdSearch" name="categoryIdSearch" >
+            <mat-option [value]=null>
+              SELECT
+            </mat-option>
+            <mat-option *ngFor="let category of categories" [value]="category.id">
+             {{category.name}}
+           </mat-option>
+         </mat-select>
+       </mat-form-field>
+        <button mat-raised-button id="button-search-category" color="primary" name="search-category" (click)="onSearchDevice()" style="margin-right: 5px;" type="button" >Search</button>
+        <button mat-raised-button id="button-clear-category" color="primary" name="clear-category" (click)="onClearDevice()" type="button" >Clear</button>
+    </mat-card>
+  </mat-expansion-panel>
+</mat-accordion>
+<mat-card>
+  <button mat-raised-button id="button-add-device" color="primary" name="add-device" (click)="onAddDevice()">Add Device</button>
+  <table mat-table [dataSource]="dataSource" >
+    <ng-container matColumnDef="#">
+      <th mat-header-cell *matHeaderCellDef>#</th>
+      <td mat-cell *matCellDef="let element"> {{element.dId}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef>Category</th>
+      <td mat-cell *matCellDef="let element"> {{element.cName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="color">
+      <th mat-header-cell *matHeaderCellDef>Color</th>
+      <td mat-cell *matCellDef="let element"> {{element.dColor}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="partnumber">
+      <th mat-header-cell *matHeaderCellDef>Partnumber</th>
+      <td mat-cell *matCellDef="let element"> {{element.dPartnumber}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>Action</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button color="warn" name="delete-category" (click)="onRemoveDevice(element.dId)" >Delete</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+    <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+  </table>
+</mat-card>
+
+<hr>
