@@ -38,7 +38,7 @@ export class DeviceListComponent implements OnInit {
   onAddDevice(): void {
     const dialogRef = this.dialog.open(DeviceCreateComponent, {
       width: '300px',
-      height: '400px'
+      height: '450px'
     });
 
     dialogRef.disableClose = true;
@@ -57,6 +57,7 @@ export class DeviceListComponent implements OnInit {
 
   onRemoveDevice(id: number) {
     this.deviceService.deleteDevice(id);
+    alert('Device removed successfully');
     this.onSearchDevice();
   }
 

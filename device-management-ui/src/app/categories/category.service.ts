@@ -17,13 +17,18 @@ export class CategoryService {
   }
 
   saveCategory(nameCategory : string) {
-    const category : Category = { id: null, name : nameCategory };
-    this.httpClient.post<{ message: string }>(URL_API + '/category', category).subscribe((responseData) => {
-      console.log(responseData.message);
-    })
+    try {
+      const category : Category = { id: null, name : nameCategory };
+      this.httpClient.post<{ message: string }>(URL_API + '/category', category).subscribe((responseData) => {
+        console.log(responseData.message);
+      })
+    } catch(error) {
+      console.log(error);
+    }
+
   }
 
-/**  getCategories(nameCategory : string) {
+  getCategories(nameCategory : string) {
     let params = new HttpParams().set('nameCategory',nameCategory);
     console.log(nameCategory);
     this.httpClient.get<{message: string, categories: Category[]}>(URL_API+'/categories', { params : params }).subscribe((categoryData) => {
@@ -34,21 +39,31 @@ export class CategoryService {
     });
     console.log(this.categories);
     return this.categories;
-  }*/
-
-  getCategories(nameCategory : string) {
-    console.log(nameCategory);
-    let params = new HttpParams().set('nameCategory',nameCategory);
-    this.httpClient.get<{message: string, categories: Category[]}>(URL_API + '/categories', { params : params }).toPromise().then(async (res : any) => {
-      this.categories = await res.categories;
-      console.log(res);
-    });
-    return this.categories;
   }
 
+  /*getCategories(nameCategory : string) {
+    try {
+      let params = new HttpParams().set('nameCategory',nameCategory);
+      this.httpClient.get<{message: string, categories: Category[]}>(URL_API + '/categories', { params : params }).toPromise().then(async (res : any) => {
+        this.categories = await res.categories;
+      });
+      return this.categories;
+    } catch(error) {
+      console.log(error);
+      return this.categories;
+    }
+
+  }*/
+
   deleteCategory(id : number) {
-    let params = new HttpParams().set('categoryId',id);
-    this.httpClient.delete<{message: string}>(URL_API + '/category', { params : params }).subscribe((categoryData) => {});
+    try {
+      let params = new HttpParams().set('categoryId',id);
+      this.httpClient.delete<{message: string}>(URL_API + '/category', { params : params }).subscribe((categoryData) => {});
+    } catch(error) {
+      console.log(error);
+      throw error;
+    }
+
   }
 
 }

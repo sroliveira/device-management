@@ -18,7 +18,7 @@ export class DeviceCreateComponent implements OnInit {
   categories : Category[] = [];
 
   constructor(
-    public dialogRef: MatDialogRef<DeviceCreateComponent>, public deviceService : DeviceService,public categoryService : CategoryService
+    public dialogRef: MatDialogRef<DeviceCreateComponent>, public deviceService : DeviceService, public categoryService : CategoryService
   ) { }
 
   ngOnInit(): void {
@@ -35,13 +35,11 @@ export class DeviceCreateComponent implements OnInit {
     }
     try {
       this.categoryId = form.value.categoryId;
-      console.log(this.categoryId);
       this.colorDevice = form.value.colorDevice;
-      console.log(this.colorDevice);
       this.partnumberDevice = form.value.partnumberDevice;
-      console.log(this.partnumberDevice);
       this.deviceService.saveDevice(this.categoryId, this.colorDevice.toUpperCase(), this.partnumberDevice);
       this.dialogRef.close();
+      alert('Device added successfully');
     } catch (error) {
       console.log('Log error', error);
       window.alert('The field')
@@ -52,6 +50,7 @@ export class DeviceCreateComponent implements OnInit {
     var keyPressed = (event.which) ? event.which : event.keyCode;
     if ((keyPressed < 48) || (keyPressed > 57)) {
       event.preventDefault();
+      this.partnumberDevice = null;
       return false;
     } else {
       return true;

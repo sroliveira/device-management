@@ -27,7 +27,7 @@ export class CategoryListComponent implements OnInit {
 
   }
   ngOnInit(): void {
-
+    this.onSearchCategory();
   }
 
   onAddCategory(): void {
@@ -52,8 +52,14 @@ export class CategoryListComponent implements OnInit {
   }
 
   onRemoveCategory(id: number) {
-    this.categoryService.deleteCategory(id);
-    this.onSearchCategory();
+    try {
+      this.categoryService.deleteCategory(id);
+      alert('Category removed successfully');
+      this.onSearchCategory();
+    } catch(error) {
+      console.log(error);
+    }
+
   }
 
 }
