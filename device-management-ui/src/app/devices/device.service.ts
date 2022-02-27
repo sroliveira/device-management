@@ -4,6 +4,9 @@ import { Device } from "./device.model";
 import { Observable, Subject } from "rxjs";
 import { Category } from "../categories/category.model";
 import { DeviceDTO } from "./device.dto";
+import { environment } from "../../environments/environment";
+
+const URL_API = environment.urlApi;
 
 @Injectable({providedIn: 'root'})
 export class DeviceService {
@@ -18,14 +21,14 @@ export class DeviceService {
   saveDevice(categoryId : number, colorDevice: string, partnumberDevice: number) {
     const category : Category = {id: categoryId, name: null};
     const device : Device = { id: null, color : colorDevice, partnumber: partnumberDevice, category : category };
-    this.httpClient.post<{ message: string }>('http://localhost:3000/api/device', device).subscribe((responseData) => {
+    this.httpClient.post<{ message: string }>(URL_API + '/device', device).subscribe((responseData) => {
       console.log(responseData.message);
     })
   }
 
   getDevices(categoryId : number) {
     let params = new HttpParams().set('categoryId',categoryId);
-    this.httpClient.get<{message: string, devices: DeviceDTO[]}>('http://localhost:3000/api/devices', { params : params }).toPromise().then(async (res : any) => {
+    this.httpClient.get<{message: string, devices: DeviceDTO[]}>(URL_API + '/devices', { params : params }).toPromise().then(async (res : any) => {
       this.devices = await res.devices;
       console.log(res);
     });
@@ -34,7 +37,7 @@ export class DeviceService {
 
   deleteDevice(id : number) {
     let params = new HttpParams().set('deviceId',id);
-    this.httpClient.delete<{message: string}>('http://localhost:3000/api/device', { params : params }).subscribe((categoryData) => {});
+    this.httpClient.delete<{message: string}>(URL_API + '/device', { params : params }).subscribe((categoryData) => {});
   }
 
 }
