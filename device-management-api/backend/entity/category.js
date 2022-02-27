@@ -1,2 +1,7 @@
-id,
-name;
+module.exports = class Category {
+     
+    constructor(id, name) {
+        this.id = id;
+        this.name = name;
+    }
+}

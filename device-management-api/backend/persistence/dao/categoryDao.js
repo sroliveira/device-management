@@ -17,9 +17,15 @@ async function getAll(categoryName){
 }
 
 async function getCategory(id) {
-    const query = 'SELECT * FROM category WHERE id = ?;';
-    const [row] = await conn.query(query, id);
-    return row;
+    try {
+        const conn = await db.connect();
+        const query = 'SELECT * FROM category WHERE id = ?;';
+        const params = [id];
+        const [row] = await conn.query(query, params);
+        return row;
+    } catch (error) {
+        console.log('Erro: ' + error);
+    }
 }
 
 async function save(category){
@@ -35,4 +41,4 @@ async function remove(id){
     return await conn.query(sql, id);
 }
 
-module.exports = {getAll, save, remove};
+module.exports = {getAll, save, remove, getCategory};

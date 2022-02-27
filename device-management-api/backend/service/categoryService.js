@@ -1,5 +1,5 @@
 const categoryDao = require('../persistence/dao/categoryDao');
-const deviceService = require('./deviceService');
+const deviceDao = require('../persistence/dao/deviceDao');
 
 async function getAll(categoryName) {
     try {
@@ -24,7 +24,7 @@ async function remove(id) {
             throw new Error("error.category.remove.paramundefined");
         }
 
-        rows = await deviceService.getAll(id);
+        rows = await deviceDao.getAll(id);
         
         if ((rows != null) && (Object.keys(rows).length > 0)) {
             throw new Error("error.category.remove.relatedwithdevice");
