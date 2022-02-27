@@ -1,5 +1,5 @@
 const deviceDao = require('../persistence/dao/deviceDao');
-const categoryService = require('./categoryService');
+const categoryDao = require('../persistence/dao/categoryDao');
 
 async function getAll(categoryId) {
     try {
@@ -24,24 +24,26 @@ async function getDevice(id) {
 
 async function save(device) {
     try {
-        device = await categoryService.getDevice([device.category.id]);
-        if (device == null) {
+        category = await categoryDao.getCategory([device.category.id]);
+        if (category == null) {
+            console.log("Categoria foi considerada nula");
             throw new Error("error.device.categoryinvalid");
         }
         await deviceDao.save(device);
     } catch (error) {
-        
+        console.log(error);
     }
 }
 
 async function remove(id) {
     try {
-      if (id == null) {
+      if (id == 'null') {
         throw new Error("error.device.remove.paramundefined");
-      }  
+      }
+      console.log("ID recebido: "+[id]);
       await deviceDao.remove(id);  
     } catch (error) {
-
+        console.log(error);
     }
 }
 
