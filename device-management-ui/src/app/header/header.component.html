@@ -1,0 +1,12 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu Master Data">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item [routerLink]="['']" routerLinkActive="active">Category Management</button>
+    <button mat-menu-item>
+      <span>Device Management</span>
+    </button>
+    <a routerLink="">Category</a>
+  </mat-menu>
+  Device Management</mat-toolbar>

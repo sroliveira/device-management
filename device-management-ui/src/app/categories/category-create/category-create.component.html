@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Category Add</h1>
+<form (submit)="onSaveCategory(categoryForm)" #categoryForm="ngForm">
+  <div mat-dialog-content>
+    <mat-form-field>
+      <input matInput type="text" id="input-category-name" ngModel name="categoryName" size="200" required minlength="1" maxlength="128" #categoryName="ngModel" placeholder="Name">
+      <mat-error *ngIf="categoryName.invalid">Please, enter a name</mat-error>
+    </mat-form-field>
+  </div>
+  <mat-dialog-actions>
+    <button mat-raised-button id="button-save-category" color="primary" name="save-category" type="submit" >Save Category</button>
+    <button mat-raised-button id="button-cancel-category" color="primary" name="cancel-category" (click)="onCancel()" type="button" >Cancel</button>
+  </mat-dialog-actions>
+</form>
+

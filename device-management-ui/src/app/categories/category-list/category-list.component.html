@@ -1,0 +1,46 @@
+<h2>Category List</h2>
+<hr>
+<mat-accordion>
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Filter
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-card>
+      <mat-form-field>
+        <input matInput type="text" id="search-category-name" [(ngModel)]="nameSearch" name="searchCategoryName" size="200" placeholder="Name">
+      </mat-form-field>
+        <button mat-raised-button id="button-search-category" color="primary" name="search-category" (click)="onSearchCategory()" style="margin-right: 5px;" type="button" >Search</button>
+        <button mat-raised-button id="button-clear-category" color="primary" name="clear-category" (click)="onClearCategory()" type="button" >Clear</button>
+    </mat-card>
+  </mat-expansion-panel>
+</mat-accordion>
+<mat-card>
+  <button mat-raised-button id="button-add-category" color="primary" name="add-category" (click)="onAddCategory()">Add Category</button>
+  <table mat-table [dataSource]="dataSource" >
+    <ng-container matColumnDef="#">
+      <th mat-header-cell *matHeaderCellDef>#</th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>Action</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button color="warn" name="delete-category" (click)="onRemoveCategory(element.id)" >Delete</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+    <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+  </table>
+</mat-card>
+
+<hr>
+
+<p>{{ categoryReturn }}</p>

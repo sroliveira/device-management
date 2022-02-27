@@ -1,0 +1,25 @@
+#search-category-name {
+  width: 100%;
+  text-transform: uppercase;
+}
+
+#button-search-category {
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+#button-clear-category {
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+table {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  min-width: 500px;
+}
+th.mat-header-cell {
+  text-align: left;
+  max-width: 300px;
+}

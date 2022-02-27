@@ -1,0 +1,14 @@
+#input-category-name {
+  width: 100%;
+  text-transform: uppercase;
+}
+
+#button-save-category {
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+#button-cancel-category {
+  margin-left: 2px;
+  margin-right: 2px;
+}
