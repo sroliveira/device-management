@@ -6,19 +6,8 @@ async function getAll(categoryId) {
         rows = await deviceDao.getAll(categoryId);
         return rows;
     } catch (error) {
-        console.log(error);
-    }
-}
-
-async function getDevice(id) {
-    try {
-        if (id == null) {
-            throw new Error("error.device.getdevice.paramundefined")
-        }
-        rows = await deviceDao.getDevice(id);
-        return rows;
-    } catch (error) {
-        console.log(error);
+        console.log("Error on deviceService.getAll " +[error]);
+        throw error;
     }
 }
 
@@ -31,19 +20,21 @@ async function save(device) {
         }
         await deviceDao.save(device);
     } catch (error) {
-        console.log(error);
+        console.log("Error on deviceService.getAll " +error);
+        throw error;
     }
 }
 
 async function remove(id) {
     try {
-      if (id == 'null') {
-        throw new Error("error.device.remove.paramundefined");
+      if (id == '') {
+        throw new Error('error.device.remove.paramundefined');
       }
       console.log("ID recebido: "+[id]);
       await deviceDao.remove(id);  
     } catch (error) {
-        console.log(error);
+        console.log("Error on deviceService.remove " +error);
+        throw error;
     }
 }
 

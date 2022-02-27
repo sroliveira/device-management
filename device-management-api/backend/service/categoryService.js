@@ -6,7 +6,8 @@ async function getAll(categoryName) {
         rows = await categoryDao.getAll(categoryName);
         return rows;
     } catch (error) {
-        console.log(error);
+        console.log("Error on categoryService.getAll " +error);
+        throw error;
     }
 }
 
@@ -14,13 +15,14 @@ async function save(category) {
     try {
         await categoryDao.save(category);
     } catch (error) {
-        
+        console.log("Error on categoryService.save " +error);
+        throw error;
     }
 }
 
 async function remove(id) {
     try {
-        if (id == null) {
+        if (id == '') {
             throw new Error("error.category.remove.paramundefined");
         }
 
@@ -33,7 +35,8 @@ async function remove(id) {
         await categoryDao.remove(id);
 
     } catch (error) {
-        console.log('Erro: ' + error);
+        console.log("Error on categoryService.remove " +error);
+        throw error;
     }
 }
 
